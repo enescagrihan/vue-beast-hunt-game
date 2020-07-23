@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Monster Attack Game</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div id="stats">
+            <div id="player-stat">
+                <div class="title">YOU</div>
+                <div class="health-bar">
+                    <div class="health-bar" :style="playerProgress" style="background-color: green; display: flex; align-items: center; justify-content: center;">
+                        {{ playerHealth }}%
+                    </div>
+                </div>
+            </div>
+            <div id="monster-stat">
+                <div class="title">MONSTER</div>
+                <div class="health-bar">
+                    <div class="health-bar" :style="monsterProgress" style="background-color: green; display: flex; align-items: center; justify-content: center;">
+                        {{ monsterHealth }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="new-game" class="boxes" v-if="!isGameStarted">
+            <button @click="startGame">START GAME</button>
+        </div>
+
+        <div id="controls" class="boxes" v-if="isGameStarted">
+            <button id="attack-btn" @click="attack">ATTACK</button>
+            <button id="special-attack-btn" @click="specialAttack">SPECİAL ATTACK</button>
+            <button id="heal-up-btn" @click="healUp">HEAL UP</button>
+            <button id="give-up-btn" @click="giveUp">GİVE UP</button>
+        </div>
+        
+        <div id="logs" class="boxes" v-if="logs.length != 0">
+            <ul>
+                <li v-for="log in logs" :class="{'player-attack-log' : log.turn == 'player', 'monster-attack-log' : log.turn == 'monster'}" >
+                    {{ log.text }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>
