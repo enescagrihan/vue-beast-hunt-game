@@ -1,0 +1,1 @@
+# vue-beast-hunt-game
